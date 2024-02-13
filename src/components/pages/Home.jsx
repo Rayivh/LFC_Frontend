@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeCarousel from "./Carousel.jsx";
+import HomeCarousel from "../Carousel.jsx";
 import {Box, Button, Modal, Stack, Typography} from "@mui/material";
 
 

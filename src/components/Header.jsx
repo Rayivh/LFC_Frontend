@@ -1,17 +1,16 @@
 import React from 'react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import CustomDropdown from "./CustomDropdown.jsx";
+import CustomDropdown from "./HOC/CustomDropdown.jsx";
 import {
     AppBar,
     Toolbar,
     Typography,
     Button,
     MenuItem,
-    Box, MenuList, ListItemText, Drawer, ListItemButton, ListItemIcon, ListItem, List,
+    Box, ListItemText, Drawer, ListItemButton, ListItem, List,
 } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Turn as Hamburger } from 'hamburger-react'
-
 
 const Header = () => {
     const matches = useMediaQuery('(min-width:1024px)');
@@ -29,21 +28,18 @@ const Header = () => {
         </Button>
 
     const responsiveMenu =
-            <React.Fragment>
-                <Drawer anchor={'top'} open={open} onClose={handleToggle} sx={{ width: 'auto'}}>
-                    <Toolbar />
-                        <List>
-                            {['Home', 'Staff', 'Mission', 'Register', 'Login'].map((text, index) => (
-                                <ListItem key={text} disablePadding>
-                                    <ListItemButton component={"a"} href="/">
-                                        <ListItemText primary={text} primaryTypographyProps={{ textAlign: 'center' }}/>
-                                    </ListItemButton>
-                                </ListItem>
-                            ))}
-                        </List>
-                </Drawer>
-            </React.Fragment>
-
+            <Drawer anchor={'top'} open={open} onClose={handleToggle} sx={{ width: 'auto'}}>
+                <Toolbar />
+                    <List>
+                        {['Home', 'Staff', 'Mission', 'Register', 'Login'].map((text) => (
+                            <ListItem key={text} disablePadding>
+                                <ListItemButton component={"a"} href="/">
+                                    <ListItemText primary={text} primaryTypographyProps={{ textAlign: 'center' }}/>
+                                </ListItemButton>
+                            </ListItem>
+                        ))}
+                    </List>
+            </Drawer>
 
 
     return (

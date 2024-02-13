@@ -5,7 +5,7 @@ import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
-import StyledIcon from "./StyledIcon.jsx";
+import StyledIcon from "./HOC/StyledIcon.jsx";
 
 const Footer = () => {
     const address = [
