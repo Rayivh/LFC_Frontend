@@ -4,6 +4,7 @@ import Home from './components/pages/Home.jsx'
 import Layout from "./components/HOC/Layout.jsx";
 import TestLogin from "./components/pages/TestLogin.jsx";
 import Profile from "./components/pages/Profile";
+import Register from "./components/pages/Register";
 
 const App = () => {
   return (
@@ -11,7 +12,7 @@ const App = () => {
         <Layout>
             <Routes>
                 <Route path='/' element={<Home/>} />
-                <Route path='/register' />
+                <Route path='/register' element={<Register/>}/>
                 <Route path='/login' element={<TestLogin/>} />
                 <Route path='/profile/:userId' element={<Profile/>}/>
 

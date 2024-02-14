@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import { useParams, useNavigate } from 'react-router-dom'; // Import useParams and useNavigate
-import { Typography } from "@mui/material";
+import {Button, Typography} from "@mui/material";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
@@ -38,13 +38,38 @@ const Profile = () => {
     useEffect(() => {
         fetchProfile().then(data => setUser({ user_id: data.user_id, username: data.username }));
 
-    }, [token, fetchProfile]); // Now fetchProfile is a dependency
+    }, [token, fetchProfile]);
 
-    // Adjusted condition to check for username to render user data
-   return (
+
+    const deleteUser = async () => {
+        try {
+            await axios.delete(`${SERVER_URL}/user/${userId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log('Delete Success');
+            Cookies.set('jwt', null)
+            navigate('/');
+
+        } catch (error) {
+            console.error('Delete failed:', error);
+            navigate('/');
+        }
+    }
+
+    function logout() {
+        console.log('Logged out');
+        Cookies.set('jwt', null)
+        navigate('/');
+    }
+
+    return (
         <>
             <Typography>User ID: {user.user_id}</Typography>
             <Typography>Username: {user.username}</Typography>
+            <Button onClick={() => deleteUser()}>Delete User</Button>
+            <Button onClick={() => logout()}>Logout</Button>
         </>
     );
 };
