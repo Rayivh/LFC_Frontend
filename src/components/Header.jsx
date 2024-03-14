@@ -11,20 +11,23 @@ import {
 } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Turn as Hamburger } from 'hamburger-react'
+import {useAuth} from "./HOC/AuthProvider";
 
 const Header = () => {
-    const matches = useMediaQuery('(min-width:1024px)');
+    const { user, isAuthenticated, logout} = useAuth();
 
+    const matches = useMediaQuery('(min-width:1024px)');
     const [open, setOpen] = React.useState(false);
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
 
+
     const aboutToggle = <Button color="inherit">About</Button>;
     const userButton =
         <Button color="inherit">
             <AccountCircleIcon />
-            <Typography variant="button" noWrap style={{marginLeft: '5px' }}>Sign In</Typography>
+            <Typography variant="button" noWrap style={{marginLeft: '5px' }}>{isAuthenticated? user.username : "Sign In"}</Typography>
         </Button>
 
     const responsiveMenu =
@@ -66,10 +69,20 @@ const Header = () => {
                                 <Button color="inherit" component="a" href="https://lfc.harnessapp.com/wv2/donate?checkout=2370" target="_blank">Donate</Button>
                                 <Button color="inherit" component={"a"} href="/contact">Contact</Button>
 
-                                <CustomDropdown toggleButton={userButton}>
-                                    <MenuItem component={"a"} href="/register">Register</MenuItem>
-                                    <MenuItem component={"a"} href="/login">Login</MenuItem>
-                                </CustomDropdown>
+                                { !isAuthenticated &&
+                                    <CustomDropdown toggleButton={userButton}>
+                                        <MenuItem component={"a"} href="/register">Register</MenuItem>
+                                        <MenuItem component={"a"} href="/login">Login</MenuItem>
+                                    </CustomDropdown>
+                                }
+
+                                { isAuthenticated &&
+                                    <CustomDropdown toggleButton={userButton}>
+                                        <MenuItem component={"a"} href="/profile">Profile</MenuItem>
+                                        <MenuItem component={"a"} href="/profile/apply">Forms</MenuItem>
+                                        <MenuItem onClick={logout}>Log Out</MenuItem>
+                                    </CustomDropdown>
+                                }
                             </React.Fragment>
                         }
 

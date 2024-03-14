@@ -63,7 +63,7 @@ const theme = createTheme({
             lineHeight: 2.0
         },
         icon:{
-            color: "#000",
+            color: "#030",
             padding:1.5,
             border: 1,
             borderRadius: 50

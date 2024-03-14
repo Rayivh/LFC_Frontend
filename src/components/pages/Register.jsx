@@ -23,8 +23,8 @@ const Register = () => {
         try {
             await axios.post(`${SERVER_URL}/user/`, user);
             navigate(`/login`); // Step 3: Redirect to login page
-        } catch (error) {
-            console.error('Register failed:', error);
+        } catch (err) {
+            console.error('Register failed:', err);
         }
     };
 
@@ -77,7 +77,7 @@ const Register = () => {
                 />
             </div>
             </Box>
-            <Button onClick={() => register(user)}>register</Button>
+            <Button onClick={() => register(user)}>Register</Button>
         </>
     );
 };

@@ -1,0 +1,78 @@
+#submit-forms{
+    text-align: left;
+    width: 100%;
+}
+
+.page{
+    width: 870px; /* width: 8in; */
+    min-height: 1000px; /* or height: 9.5in; */
+    margin: auto;
+    clear: both;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    background-color: white;
+    page-break-after: always;
+}
+
+.page-contents {
+    position: relative;
+    top: 1in;
+    left: 1in;
+    width: 7in;
+    height: 8.5in;
+    line-height: 1.5;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.page-contents{ font-size: 0.9rem;}
+
+.page-contents h2{ text-align: center;}
+
+
+.volunteer-form{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.volunteer-form-subcontainer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.green-page{
+    line-height: 1.5;
+    background: linear-gradient(
+        to bottom,
+        #dfff80 0%,
+        #dfff80 18%,
+        white 18%,
+        white 100%
+);
+}
+
+.green-page-contents{
+    display: flex;
+    flex-direction: column;
+    gap: 75px;
+}
+
+.green-form-contents{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+#volunteer-border{
+    width: 100%;
+    border-top: 10px dotted #dfff80;
+    padding-bottom: 15px;
+}
+
+#volunteer-border-black {
+    width: 100%;
+    border-top: 2px dashed black;
+}

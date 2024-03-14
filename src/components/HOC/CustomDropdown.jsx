@@ -28,7 +28,14 @@ const CustomDropdown = ({ children, toggleButton }) => {
     }, [open]);
 
     const clonedChildren = React.Children.map(children, (child) =>
-        React.cloneElement(child, { onClick: handleClose })
+        React.cloneElement(child, {
+            onClick: (event) => {
+                if (child.props.onClick) {
+                    child.props.onClick(event)
+                }
+                handleClose(event)
+            }
+        })
     );
 
     // Clone the toggleButton to include handleClick

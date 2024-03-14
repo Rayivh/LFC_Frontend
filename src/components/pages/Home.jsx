@@ -1,6 +1,7 @@
 import React from 'react';
 import HomeCarousel from "../Carousel.jsx";
 import {Box, Button, Modal, Stack, Typography} from "@mui/material";
+import {useAuth} from "../HOC/AuthProvider";
 
 
 const style = {
@@ -26,6 +27,9 @@ const Home = () => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    // const { user, isAuthenticated } = useAuth();
+    // console.log(user, isAuthenticated)
 
     return (
         <>

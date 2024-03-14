@@ -1,46 +1,17 @@
-import React, {useState} from 'react';
-import {Box, Button, TextField, Typography} from "@mui/material";
-import axios from 'axios';
-import Cookies from 'js-cookie';
-import {useNavigate} from "react-router-dom";
+import React, { useState } from 'react';
+import { useAuth } from '../HOC/AuthProvider';
+import { Box, Button, TextField, Typography } from '@mui/material';
 
-
-const TestLogin = () => {
-    let navigate = useNavigate(); // Step 2: Initialize useNavigate
-
-    let SERVER_URL = 'http://localhost:3001';
-
-    const [creds, setCreds] = useState({username:"", password:""});
-    const[isAuthenticated, setAuth] = useState(false);
+const Login = () => {
+    const { isAuthenticated, login } = useAuth(); // Destructure login and isAuthenticated from context
+    const [creds, setCreds] = useState({ username: "", password: "" });
 
     const editChange = (event) => {
-        setCreds({...creds,  [event.target.name]:event.target.value})
-    }
-
-    const login = async (creds) => {
-        console.log("Login Clicked", creds);
-        try {
-            const response = await axios.post(`${SERVER_URL}/login`, creds);
-            const jwtToken = response.headers['authorization'].split(' ')[1];
-
-            Cookies.set('jwt', jwtToken, { expires: 1 });
-            console.log("Token saved to Cookies")
-
-            setAuth(true); // Update authentication state
-            navigate(`/profile/${response.data.user_id}`); // Step 3: Redirect to profile page
-        } catch (error) {
-            console.error('Login failed:', error);
-        }
+        setCreds({ ...creds, [event.target.name]: event.target.value });
     };
 
-
     if (isAuthenticated) {
-        return (
-            <>
-                <Typography>Authenticated!</Typography>
-            </>
-        )
-
+        return <Typography>Authenticated!</Typography>;
     } else {
         return (
             <>
@@ -71,13 +42,12 @@ const TestLogin = () => {
                             autoComplete="current-password"
                             onChange={editChange}
                         />
-
                     </div>
                 </Box>
                 <Button onClick={() => login(creds)}>Login</Button>
             </>
-        )
+        );
     }
-}
+};
 
-export default TestLogin
+export default Login;
